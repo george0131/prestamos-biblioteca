@@ -15,9 +15,9 @@ CREATE TABLE roles
 
 CREATE TABLE book
 (
-    id   int PRIMARY KEY AUTO_INCREMENT,
+    id     int PRIMARY KEY AUTO_INCREMENT,
     id_lib int,
-    name text NOT NULL
+    name   text NOT NULL
 );
 
 CREATE TABLE reader_info
@@ -26,7 +26,7 @@ CREATE TABLE reader_info
     number_id  int UNIQUE  NOT NULL,
     names      text        NOT NULL,
     last_names text        NOT NULL,
-    birth_date varchar(15) NOT NULL,
+    birth_date date        NOT NULL,
     cell_phone varchar(10) NOT NULL
 );
 
@@ -38,14 +38,15 @@ CREATE TABLE lend_items
 
 CREATE TABLE lend
 (
-    id             int PRIMARY KEY,
-    user_id        int       NOT NULL,
-    reader_info_id int       NOT NULL,
-    created_on     timestamp DEFAULT now(),
-    return_on      timestamp NOT NULL
+    id             int PRIMARY KEY AUTO_INCREMENT,
+    user_id        int  NOT NULL,
+    reader_info_id int  NOT NULL,
+    created_on     date DEFAULT now(),
+    return_on      date NOT NULL
 );
 
-CREATE UNIQUE INDEX lend_items_uk ON lend_items (lend_id, book_id);
+ALTER TABLE lend_items
+    ADD PRIMARY KEY (lend_id, book_id);
 
 ALTER TABLE users
     ADD CONSTRAINT users_role_id_fk FOREIGN KEY (role_id) REFERENCES roles (id);
