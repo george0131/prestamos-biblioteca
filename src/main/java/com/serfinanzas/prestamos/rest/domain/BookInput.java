@@ -14,4 +14,5 @@ import lombok.Setter;
 public class BookInput {
 
     private int code;
+    private String name;
 }

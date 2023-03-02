@@ -29,16 +29,12 @@ class PrestamosApplicationTests {
 	private ObjectMapper objectMapper;
 
 	@Test
-	void contextLoads() {
-	}
-
-	@Test
 	void failedCreationLendBookNonExists() throws Exception {
 
 		ReaderInfoInput infoInput = getReaderInfo();
 
 		LendItemInput itemInput = new LendItemInput();
-		itemInput.setBook(new BookInput(321456));
+		itemInput.setBook(new BookInput(321456, ""));
 
 		LendInput lendInput = new LendInput();
 		lendInput.setReaderInfo(infoInput);
@@ -63,7 +59,7 @@ class PrestamosApplicationTests {
 		ReaderInfoInput infoInput = getReaderInfo();
 
 		LendItemInput itemInput = new LendItemInput();
-		itemInput.setBook(new BookInput(1234));
+		itemInput.setBook(new BookInput(1234, ""));
 
 		LendInput lendInput = new LendInput();
 		lendInput.setReaderInfo(infoInput);
@@ -88,7 +84,7 @@ class PrestamosApplicationTests {
 		ReaderInfoInput infoInput = getReaderInfo();
 
 		LendItemInput itemInput = new LendItemInput();
-		itemInput.setBook(new BookInput(987656789));
+		itemInput.setBook(new BookInput(987656789, ""));
 
 		LendInput lendInput = new LendInput();
 		lendInput.setReaderInfo(infoInput);
@@ -112,7 +108,7 @@ class PrestamosApplicationTests {
 		ReaderInfoInput infoInput = getReaderInfo();
 
 		LendItemInput itemInput = new LendItemInput();
-		itemInput.setBook(new BookInput(987659));
+		itemInput.setBook(new BookInput(987659, ""));
 
 		LendInput lendInput = new LendInput();
 		lendInput.setReaderInfo(infoInput);

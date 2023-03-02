@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es"
+      xmlns:th="http://www.thymeleaf.org"
+      th:replace="layout/main :: base(~{::[@id='content']}, ~{:: script})">
+<div id="content">
+    <h1 class="mt-4">Nuevo Libro</h1>
+    <form class="row g-3 needs-validation"
+          method="POST" action="/book/new"
+          novalidate>
+        <div class="col-md-6">
+            <label for="id_lib" class="form-label">C&oacute;digo</label>
+            <input type="text" class="form-control" id="id_lib" name="code" required>
+            <div class="invalid-feedback">
+                Por favor digite el c&oacute;digo del libro.
+            </div>
+        </div>
+        <div class="col-md-6">
+            <label for="book_name" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="book_name" name="name" required>
+            <div class="invalid-feedback">
+                Por favor digite el nombre del libro.
+            </div>
+        </div>
+        <div class="col-12">
+            <button class="btn btn-primary" type="submit">Enviar</button>
+        </div>
+    </form>
+</div>
+<script th:src="@{/js/form_validation.js}"></script>
+</html>

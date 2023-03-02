@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es"
+      xmlns:th="http://www.thymeleaf.org"
+      th:replace="layout/main :: base(~{::[@id='content']}, ~{:: script})">
+<div id="content">
+    <h1 class="mt-4">Nuevo Pr&eacute;stamo</h1>
+    <form class="row g-3 needs-validation"
+          method="POST" action="/lend/new"
+          novalidate>
+        <div class="col-md-12">
+            <label for="book" class="form-label">Libro</label>
+            <select class="form-control select-two" id="book" name="lendItem.book.code" required>
+                <option value="">Seleccione un libro</option>
+                <option th:each="book : ${books}" th:value="${book.idLib}"
+                        th:text="${book.name}"></option>
+            </select>
+            <div class="invalid-feedback">
+                Por favor seleccione un libro.
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label for="reader_docId" class="form-label">No. de Identificaci&oacute;n</label>
+            <input type="text" class="form-control" id="reader_docId" name="readerInfo.documentId" required>
+            <div class="invalid-feedback">
+                Por favor digite el número de documento de la persona.
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label for="reader_names" class="form-label">Nombres</label>
+            <input type="text" class="form-control" id="reader_names" name="readerInfo.names" required>
+            <div class="invalid-feedback">
+                Por favor digite los nombres de la persona.
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label for="reader_lastnames" class="form-label">Apellidos</label>
+            <input type="text" class="form-control" id="reader_lastnames" name="readerInfo.lastNames" required>
+            <div class="invalid-feedback">
+                Por favor digite los apellidos de la persona.
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label for="reader_birthdate" class="form-label">Fecha de Nacimiento</label>
+            <input type="date" class="form-control" id="reader_birthdate" name="readerInfo.birthDate" required>
+            <div class="invalid-feedback">
+                Por favor digite la fecha de nacmimiento de la persona.
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label for="reader_cellphone" class="form-label">Celular</label>
+            <input type="number" class="form-control" id="reader_cellphone" name="readerInfo.cellPhone" required>
+            <div class="invalid-feedback">
+                Por favor digite el celular de la persona.
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label for="return_on" class="form-label">Fecha de Devoluci&oacute;n</label>
+            <input type="date" class="form-control" id="return_on" name="returnOn" required>
+            <div class="invalid-feedback">
+                Por favor digite la fecha de devoluci&oacute;n.
+            </div>
+        </div>
+        <div class="col-12">
+            <button class="btn btn-primary" type="submit">Enviar</button>
+        </div>
+    </form>
+</div>
+<script th:src="@{/js/form_validation.js}"></script>
+<script th:src="@{/js/lend/new.js}"></script>
+</html>

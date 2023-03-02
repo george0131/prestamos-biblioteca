@@ -8,6 +8,8 @@ import com.serfinanzas.prestamos.persistence.domain.*;
 import com.serfinanzas.prestamos.rest.domain.LendInput;
 import com.serfinanzas.prestamos.rest.domain.ReaderInfoInput;
 import com.serfinanzas.prestamos.service.exception.LendException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -123,6 +125,12 @@ public class LendServiceImpl implements LendService {
         }
 
         return lendCreated;
+    }
+
+    @Override
+    public Page<Lend> getAll(Pageable pageable) {
+
+        return repository.findAll(pageable);
     }
 
     private boolean checkIfNumberIsPalindrome(int num) {

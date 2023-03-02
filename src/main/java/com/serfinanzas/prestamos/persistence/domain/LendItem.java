@@ -14,12 +14,16 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class LendItem implements Serializable {
 
-    @EmbeddedId
-    private LendItemCompositeKey compositeKey;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    int id;
+    @ManyToOne
+    Lend lend;
+    @ManyToOne
+    Book book;
 
     public LendItem(Lend lend, Book book) {
-        this.compositeKey = new LendItemCompositeKey();
-        this.compositeKey.lend = lend;
-        this.compositeKey.book = book;
+        this.lend = lend;
+        this.book = book;
     }
 }

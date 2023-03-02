@@ -27,6 +27,10 @@ public class Lend implements Serializable {
     private LocalDate createdOn;
     private LocalDate returnOn;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id", referencedColumnName = "book_id")
+    private LendItem item;
+
     public Lend(User user, ReaderInfo readerInfo, LocalDate createdOn, LocalDate returnOn) {
         this.user = user;
         this.readerInfo = readerInfo;

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es"
+      xmlns:th="http://www.thymeleaf.org"
+      th:replace="layout/main :: base(~{::[@id='content']}, ~{:: script})">
+    <div id="content">
+        <h1 class="mt-4">Pr&eacute;stamos</h1>
+        <div class="d-flex flex-row-reverse">
+            <div class="p-2">
+                <a href="/lend/new" class="btn btn-primary btn-lg">Crear Pr&eacute;stamo</a>
+            </div>
+            <div class="p-2">
+                <a href="/book/new" class="btn btn-primary btn-lg">Crear Libro</a>
+            </div>
+        </div>
+        <div class="col-md-12" th:replace="layout/messages :: msgs"></div>
+        <ol class="breadcrumb mb-4">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Libro</th>
+                    <th scope="col">Usuario</th>
+                    <th scope="col">Persona</th>
+                    <th scope="col">Fecha de creaci&oacute;n</th>
+                    <th scope="col">Fecha de devoluci&oacute;n</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="lend : ${loans}">
+                    <th scope="row" th:text="${lend.id}"></th>
+                    <td th:text="${lend.item.book.name}"></td>
+                    <td th:text="${lend.user.fullName}"></td>
+                    <td th:text="${lend.readerInfo.names + ' ' + lend.readerInfo.lastNames}"></td>
+                    <td th:text="${#temporals.format(lend.createdOn, 'dd/MM/yyyy')}"></td>
+                    <td th:text="${#temporals.format(lend.returnOn, 'dd/MM/yyyy')}"></td>
+                </tr>
+                </tbody>
+            </table>
+            <nav th:if="${loanPage.totalPages > 0}">
+                <ul class="pagination pagination-sm">
+                    <th:block th:each="pageNumber : ${pageNumbers}">
+                        <th:block th:if="${pageNumber == loanPage.number + 1}">
+                            <li class="page-item active" aria-current="page">
+                                <span class="page-link" th:text="${pageNumber}"></span>
+                            </li>
+                        </th:block>
+                        <th:block th:unless="${pageNumber == loanPage.number + 1}">
+                            <li class="page-item">
+                                <a th:href="@{/loans(page=${pageNumber - 1}, size=${loanPage.size})}"
+                                   class="page-link" th:text="${pageNumber}"></a>
+                            </li>
+                        </th:block>
+                    </th:block>
+                </ul>
+            </nav>
+        </ol>
+    </div>
+    <script></script>
+</html>

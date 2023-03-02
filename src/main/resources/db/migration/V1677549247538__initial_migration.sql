@@ -32,6 +32,7 @@ CREATE TABLE reader_info
 
 CREATE TABLE lend_items
 (
+    id int PRIMARY KEY AUTO_INCREMENT,
     lend_id int NOT NULL,
     book_id int NOT NULL
 );
@@ -46,7 +47,7 @@ CREATE TABLE lend
 );
 
 ALTER TABLE lend_items
-    ADD PRIMARY KEY (lend_id, book_id);
+    ADD CONSTRAINT lend_items_uk UNIQUE (lend_id, book_id);
 
 ALTER TABLE users
     ADD CONSTRAINT users_role_id_fk FOREIGN KEY (role_id) REFERENCES roles (id);
