@@ -17,9 +17,9 @@ Para correr el proyecto con maven debe ejecutar en consola la siguiente instrucc
 
 #### mvn spring-boot:run
 
-Si desea correrlo con Java abrir una consola, acceder a la ruta del proyecto y ubicar el archivo llamado xxx.jar y ejecutar la instrucción:
+Si desea correrlo con Java debe abrir una consola, acceder a la ruta del proyecto y ubicar el archivo llamado prestamos-0.0.1-SNAPSHOT.jar y ejecutar la instrucción:
 
-#### java -jar xxx.jar
+#### java -jar prestamos-0.0.1-SNAPSHOT.jar
 
 La ruta de acceso es http://localhost:8080 y las credenciales de acceso son:
 
