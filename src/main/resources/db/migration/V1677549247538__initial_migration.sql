@@ -1,16 +1,22 @@
 CREATE TABLE users
 (
-    id        int PRIMARY KEY AUTO_INCREMENT,
-    full_name text NOT NULL,
-    username  text NOT NULL,
-    password  text NOT NULL,
-    role_id   int  NOT NULL
+    id       int PRIMARY KEY AUTO_INCREMENT,
+    username text NOT NULL,
+    password text NOT NULL,
+    enabled  BOOLEAN DEFAULT TRUE
 );
 
 CREATE TABLE roles
 (
     id   int PRIMARY KEY AUTO_INCREMENT,
     name text NOT NULL
+);
+
+CREATE TABLE authorities
+(
+    id        int PRIMARY KEY AUTO_INCREMENT,
+    username  text NOT NULL,
+    authority text NOT NULL
 );
 
 CREATE TABLE book
@@ -32,7 +38,7 @@ CREATE TABLE reader_info
 
 CREATE TABLE lend_items
 (
-    id int PRIMARY KEY AUTO_INCREMENT,
+    id      int PRIMARY KEY AUTO_INCREMENT,
     lend_id int NOT NULL,
     book_id int NOT NULL
 );
@@ -40,7 +46,7 @@ CREATE TABLE lend_items
 CREATE TABLE lend
 (
     id             int PRIMARY KEY AUTO_INCREMENT,
-    user_id        int  NOT NULL,
+    username       text NOT NULL,
     reader_info_id int  NOT NULL,
     created_on     date DEFAULT now(),
     return_on      date NOT NULL
@@ -49,17 +55,11 @@ CREATE TABLE lend
 ALTER TABLE lend_items
     ADD CONSTRAINT lend_items_uk UNIQUE (lend_id, book_id);
 
-ALTER TABLE users
-    ADD CONSTRAINT users_role_id_fk FOREIGN KEY (role_id) REFERENCES roles (id);
-
 ALTER TABLE lend_items
     ADD CONSTRAINT lend_items_lend_id_fk FOREIGN KEY (lend_id) REFERENCES lend (id);
 
 ALTER TABLE lend_items
     ADD CONSTRAINT lend_items_book_id_fk FOREIGN KEY (book_id) REFERENCES book (id);
-
-ALTER TABLE lend
-    ADD CONSTRAINT lend_user_id_fk FOREIGN KEY (user_id) REFERENCES users (id);
 
 ALTER TABLE lend
     ADD CONSTRAINT lend_reader_info_id_fk FOREIGN KEY (reader_info_id) REFERENCES reader_info (id);

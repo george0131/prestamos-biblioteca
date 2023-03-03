@@ -18,9 +18,8 @@ public class Lend implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private User user;
+    @Column(name = "username")
+    private String user;
     @ManyToOne
     @JoinColumn(name = "reader_info_id", referencedColumnName = "id")
     private ReaderInfo readerInfo;
@@ -31,7 +30,7 @@ public class Lend implements Serializable {
     @JoinColumn(name = "id", referencedColumnName = "book_id")
     private LendItem item;
 
-    public Lend(User user, ReaderInfo readerInfo, LocalDate createdOn, LocalDate returnOn) {
+    public Lend(String user, ReaderInfo readerInfo, LocalDate createdOn, LocalDate returnOn) {
         this.user = user;
         this.readerInfo = readerInfo;
         this.createdOn = createdOn;

@@ -95,7 +95,7 @@ public class LendServiceImpl implements LendService {
                 : returnOn;
 
         Lend newRow = new Lend(
-                new User(1),
+                input.getUsername(),
                 readerInfoFound,
                 LocalDate.now(),
                 returnOn

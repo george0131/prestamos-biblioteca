@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
@@ -29,6 +30,7 @@ class PrestamosApplicationTests {
 	private ObjectMapper objectMapper;
 
 	@Test
+	@WithMockUser(value = "bibliotecario")
 	void failedCreationLendBookNonExists() throws Exception {
 
 		ReaderInfoInput infoInput = getReaderInfo();
@@ -54,6 +56,7 @@ class PrestamosApplicationTests {
 	}
 
 	@Test
+	@WithMockUser(value = "bibliotecario")
 	void failedCreationLendBookOnLoan() throws Exception {
 
 		ReaderInfoInput infoInput = getReaderInfo();
@@ -79,6 +82,7 @@ class PrestamosApplicationTests {
 	}
 
 	@Test
+	@WithMockUser(value = "bibliotecario")
 	void failedCreationLendBookIsPalindrome() throws Exception {
 
 		ReaderInfoInput infoInput = getReaderInfo();
@@ -103,6 +107,7 @@ class PrestamosApplicationTests {
 	}
 
 	@Test
+	@WithMockUser(value = "bibliotecario")
 	void createLendBookWithSumDigitsGreaterThan40() throws Exception {
 
 		ReaderInfoInput infoInput = getReaderInfo();

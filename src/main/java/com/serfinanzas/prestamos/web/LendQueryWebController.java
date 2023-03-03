@@ -6,6 +6,7 @@ import com.serfinanzas.prestamos.rest.query.Query;
 import com.serfinanzas.prestamos.service.BookService;
 import com.serfinanzas.prestamos.service.LendService;
 import org.springframework.data.domain.Page;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,6 +27,7 @@ public class LendQueryWebController {
     }
 
     @GetMapping({"/", "/loans"})
+    @PreAuthorize("isAuthenticated()")
     public String getLendView(Model model, Query query) {
 
         Page<Lend> loans = service.getAll(query.getPageRequest());
@@ -45,6 +47,7 @@ public class LendQueryWebController {
     }
 
     @GetMapping(value = "/lend/new")
+    @PreAuthorize("isAuthenticated()")
     public String getCreationLendView(Model model) {
 
         List<Book> books = bookService.findAll();
@@ -56,6 +59,7 @@ public class LendQueryWebController {
     }
 
     @GetMapping(value = "/book/new")
+    @PreAuthorize("isAuthenticated()")
     public String getCreationBookView(Model model) {
 
         return "views/book/new";

@@ -2,6 +2,7 @@ package com.serfinanzas.prestamos.web;
 
 import com.serfinanzas.prestamos.rest.domain.BookInput;
 import com.serfinanzas.prestamos.service.BookService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -16,6 +17,7 @@ public class BookCommandWebController extends CommandWebController {
     }
 
     @PostMapping("/book/new")
+    @PreAuthorize("isAuthenticated()")
     public String createBook(BookInput input, RedirectAttributes attributes) {
 
         bookService.createBook(input);

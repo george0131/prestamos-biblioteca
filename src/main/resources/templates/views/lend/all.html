@@ -29,7 +29,7 @@
                 <tr th:each="lend : ${loans}">
                     <th scope="row" th:text="${lend.id}"></th>
                     <td th:text="${lend.item.book.name}"></td>
-                    <td th:text="${lend.user.fullName}"></td>
+                    <td th:text="${lend.user}"></td>
                     <td th:text="${lend.readerInfo.names + ' ' + lend.readerInfo.lastNames}"></td>
                     <td th:text="${#temporals.format(lend.createdOn, 'dd/MM/yyyy')}"></td>
                     <td th:text="${#temporals.format(lend.returnOn, 'dd/MM/yyyy')}"></td>

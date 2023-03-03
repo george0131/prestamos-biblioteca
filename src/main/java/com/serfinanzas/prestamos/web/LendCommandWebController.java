@@ -2,9 +2,12 @@ package com.serfinanzas.prestamos.web;
 
 import com.serfinanzas.prestamos.rest.domain.LendInput;
 import com.serfinanzas.prestamos.service.LendService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.security.Principal;
 
 @Controller
 public class LendCommandWebController extends CommandWebController {
@@ -16,7 +19,10 @@ public class LendCommandWebController extends CommandWebController {
     }
 
     @PostMapping(value = "/lend/new")
-    public String createLend(LendInput input, RedirectAttributes redirectAttributes) {
+    @PreAuthorize("isAuthenticated()")
+    public String createLend(LendInput input, RedirectAttributes redirectAttributes, Principal principal) {
+
+        input.setUsername(principal.getName());
 
         lendService.createLend(input);
 

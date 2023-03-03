@@ -16,6 +16,7 @@ import java.time.LocalDate;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class LendInput {
 
+    private String username;
     private ReaderInfoInput readerInfo;
     private LendItemInput lendItem;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
